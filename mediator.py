@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import List
 
 class ChatMediator(ABC):
     @abstractmethod
@@ -9,18 +10,18 @@ class User(ABC):
     def __init__(self, name: str, mediator: ChatMediator):
         self.name = name
         self.mediator = mediator
+        self.received_messages: List[str] = []  # Лист лога сообщений для теста
 
     @abstractmethod
     def send(self, message: str):
         pass
 
-    @abstractmethod
     def receive(self, message: str):
-        pass
+        self.received_messages.append(message)  
 
 class ChatServer(ChatMediator):
     def __init__(self):
-        self.users = []
+        self.users: List[User] = []
 
     def add_user(self, user: User):
         self.users.append(user)
@@ -32,8 +33,4 @@ class ChatServer(ChatMediator):
 
 class ChatUser(User):
     def send(self, message: str):
-        print(f"{self.name} sends: {message}")
         self.mediator.send_message(message, self)
-
-    def receive(self, message: str):
-        print(f"{self.name} received: {message}")
