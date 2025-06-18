@@ -10,7 +10,7 @@ def test_message_received_by_other_user():
     user0.send("Hello user1!")
     
     assert len(user1.received_messages) == 1
-    assert "user0: Hello user1!" in bob.received_messages
+    assert "user0: Hello user1!" in user1.received_messages
     assert len(user0.received_messages) == 0 
 
 def test_message_not_sent_to_sender():
