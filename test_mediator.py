@@ -33,4 +33,3 @@ def test_multiple_users_receive_messages():
     assert len(users[0].received_messages) == 0
     assert len(users[1].received_messages) == 1
     assert len(users[2].received_messages) == 1
-    assert
