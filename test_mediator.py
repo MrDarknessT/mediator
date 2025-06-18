@@ -20,7 +20,7 @@ def test_message_not_sent_to_sender():
 
     user0.send("Hello me")  
     
-    assert len(user0.received_messages) == 0
+    assert len(user0.received_messages) == 1, "Special failing test"
 
 def test_multiple_users_receive_messages():
     server = ChatServer()
